@@ -3,7 +3,7 @@ package TimeFormatter;
 import Timer.Timer;
 import Timer.TimeTypeSet;
 
-public class TimeFormatter {
+public class TimeFormatter implements Formatter{
 
     private Date date;
     long unformatted;

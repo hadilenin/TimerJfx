@@ -2,7 +2,7 @@ package Timer;
 
 import java.util.TimerTask;
 
-import TimeFormatter.TimeFormatter;
+import TimeFormatter.*;
 import Utility.*;
 
 public class Timer {
@@ -10,11 +10,11 @@ public class Timer {
     private long duration;
     private java.util.Timer scheduler;
     private TimerTask task;
-    private TimeFormatter timeFormatter;
+    private Formatter timeFormatter;
 
     boolean pause = false;
 
-    public Timer(long input_duration, TimeTypeSet typeSet) {
+    public Timer(long input_duration, TimeTypeSet typeSet, Formatter timeFormatter) {
         switch (typeSet) {
             case HOUR:
                 this.duration = Utility.toSeconds(input_duration, TimeTypeSet.HOUR);
@@ -27,7 +27,9 @@ public class Timer {
                 break;
         }
         scheduler = new java.util.Timer();
-        timeFormatter = new TimeFormatter(TimeTypeSet.SECOND, duration);
+       // timeFormatter = new TimeFormatter(TimeTypeSet.SECOND, duration);
+        this.timeFormatter = timeFormatter;
+
     }
 
     public long getDuration() {
@@ -40,7 +42,9 @@ public class Timer {
 
     private void onProcessTiming() {
         duration--;
-        timeFormatter.setUnformatted(duration);
+       /* timeFormatter.setUnformatted(duration);
+        timeFormatter.format();
+        System.out.println(timeFormatter);*/
         timeFormatter.format();
         System.out.println(timeFormatter);
     }
